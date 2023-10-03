@@ -1,6 +1,7 @@
 package com.example.vtf;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -13,6 +14,17 @@ import java.io.IOException;
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
+        stage.setTitle("Video Clipping");
+        Button button = new Button();
+        button.setText("test me");
+        StackPane root = new StackPane();
+        root.getChildren().add(button);
+        Scene scene = new Scene(root, 300, 250);
+        stage.setScene(scene);
+        stage.show();
+
+
+        /*
         Media media = new Media(new File("src/main/resources/video1.mp4").toURI().toString());
         MediaPlayer mp = new MediaPlayer(media);
         MediaView mv = new MediaView(mp);
@@ -24,6 +36,8 @@ public class Application extends javafx.application.Application {
         mp.play();
         stage.show();
         mp.play();
+
+         */
 
     }
 
