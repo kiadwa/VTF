@@ -1,5 +1,7 @@
 package com.example.vtf;
 
+import com.example.vtf.Engine.Engine;
+import com.example.vtf.Engine.Window;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -14,13 +16,11 @@ import java.io.IOException;
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        stage.setTitle("Video Clipping");
-        Button button = new Button();
-        button.setText("test me");
-        StackPane root = new StackPane();
-        root.getChildren().add(button);
-        Scene scene = new Scene(root, 300, 250);
-        stage.setScene(scene);
+        Engine backEnd = new Engine();
+        Window appWindow = new Window(backEnd);
+
+        stage.setTitle("Video to GIF");
+        stage.setScene(appWindow.getScene());
         stage.show();
 
 

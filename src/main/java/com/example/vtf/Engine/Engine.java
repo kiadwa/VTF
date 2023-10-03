@@ -11,9 +11,9 @@ public class Engine {
     Media outputGIF;
 
 
-    public  Engine(Scene appScene, Window appWindow){
-        this.appScene = appScene;
-        this.appWindow = appWindow;
+    public  Engine(){
+
+
     }
 
 
