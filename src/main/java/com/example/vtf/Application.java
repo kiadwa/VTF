@@ -24,21 +24,6 @@ public class Application extends javafx.application.Application {
         stage.show();
 
 
-        /*
-        Media media = new Media(new File("src/main/resources/video1.mp4").toURI().toString());
-        MediaPlayer mp = new MediaPlayer(media);
-        MediaView mv = new MediaView(mp);
-        StackPane root = new StackPane();
-        root.getChildren().add(mv);
-        //stage.setTitle("Hello!");
-        Scene scene = new Scene(root, 1200, 600);
-        stage.setScene(scene);
-        mp.play();
-        stage.show();
-        mp.play();
-
-         */
-
     }
 
     public static void main(String[] args) {

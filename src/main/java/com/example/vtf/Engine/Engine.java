@@ -25,9 +25,6 @@ public class Engine {
 
     }
 
-
-
-
     public void setOrgMedia(Media media){
         this.orgMedia = media;
     }
