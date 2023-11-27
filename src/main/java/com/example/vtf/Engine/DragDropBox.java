@@ -18,9 +18,9 @@ public class DragDropBox {
     public DragDropBox(){
         WIDTH = 500;
         HEIGHT = 100;
-        y = 200;
+        y = 400;
         x = 0;
-        box = new Rectangle(500,100);
+        box = new Rectangle(900,100);
         box.setFill(Color.LIGHTGRAY);
         box.setX(x);
         box.setY(y);
@@ -40,7 +40,7 @@ public class DragDropBox {
                 event.getDragboard().getFiles().forEach(file -> {
                         inputFile = file;
                         filePath = inputFile.getAbsolutePath();
-
+                        System.out.println(filePath);
                     // Save the file for later use, e.g., copy it to a specific directory
                     // You can implement this part based on your requirements
                 });
