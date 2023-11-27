@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 public class FFmpegWrapper {
     InputStream inputStream;
-    static final String FFMPEG_PATH = "C://Users//phkya//Documents//GitHub//vtf//src//lib//ffmpeg-6.0-essentials_build//bin";
+    static final String FFMPEG_PATH = "src/lib/ffmpeg-6.0-essentials_build/bin";
     String ffmpegCommand;
 
     public boolean execute(String command) {

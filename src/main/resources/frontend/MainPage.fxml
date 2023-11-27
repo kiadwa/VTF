@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane fx:id="MainPage_AnchorPane_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="37.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VTGF" wrappingWidth="36.83203125" />
+      <Button fx:id="MainPage_button_uploadButton" layoutX="229.0" layoutY="313.0" mnemonicParsing="false" onAction="#MainPage_onAction_upload" text="Click to upload " />
+      <TextField fx:id="MainPage_TextField_FileName" layoutX="101.0" layoutY="84.0" />
+      <Label layoutX="41.0" layoutY="88.0" text="File Name" />
+      <TextField fx:id="MainPage_TextField_FileSize" layoutX="101.0" layoutY="130.0" />
+      <Text layoutX="46.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Size" />
+      <Text layoutX="328.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ext" />
+      <TextField fx:id="MainPage_TextField_Ext" layoutX="369.0" layoutY="130.0" />
+      <Text layoutX="313.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" />
+      <TextField fx:id="MainPage_TextField_Duration" layoutX="369.0" layoutY="84.0" />
+   </children>
+</AnchorPane>
