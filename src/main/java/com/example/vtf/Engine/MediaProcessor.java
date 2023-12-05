@@ -24,14 +24,6 @@ public class MediaProcessor {
     public void setMedia(Media media){
         this.media = media;
     }
-    public void show(Pane root, Scene scene){
-        if (media != null){
-            MediaPlayer mediaPlayer = new MediaPlayer(media);
-            MediaView mediaView = new MediaView(mediaPlayer);
-
-            root.getChildren().add(mediaView);
-
-        }
-    }
+    public Media getMedia(){return media;}
 
 }

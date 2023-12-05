@@ -1,9 +1,14 @@
 package com.example.vtf.Controller;
+import com.example.vtf.Engine.MediaProcessor;
+import com.example.vtf.Engine.PageJump;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.MediaView;
+
+import java.io.IOException;
+
 public class ViewController {
     @FXML
     private MediaView View_MediaView_mediaoutput;
@@ -17,9 +22,22 @@ public class ViewController {
     @FXML
     private Button View_button_toGIF;
 
-    @FXML
-    void View_Back(ActionEvent event) {
+    private MediaProcessor mediaProcessor;
 
+    private static ViewController instance;
+
+    private ViewController(){}
+
+    public static ViewController getInstance(){
+        if(instance == null){
+            instance = new ViewController();
+        }
+        return instance;
+    }
+
+    @FXML
+    void View_Back(ActionEvent event) throws IOException {
+        PageJump.switchPage(event, "MainPage");
     }
 
     @FXML

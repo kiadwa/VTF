@@ -1,6 +1,7 @@
 package com.example.vtf.Engine;
 
 import com.example.vtf.Controller.MainPageController;
+import com.example.vtf.Controller.ViewController;
 import com.example.vtf.UI.PAGE_INDEX;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import static com.example.vtf.UI.PAGE_INDEX.MAIN_PAGE;
+import static com.example.vtf.UI.PAGE_INDEX.MEDIA_VIEW;
 
 public class PageJump {
 
@@ -20,7 +22,8 @@ public class PageJump {
     private static Scene getScene(String destPageName) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader();
         switch(destPageName){
-            case MAIN_PAGE -> fxmlLoader.setController(new MainPageController());
+            case MAIN_PAGE -> fxmlLoader.setController(MainPageController.getInstance());
+            case MEDIA_VIEW -> fxmlLoader.setController(ViewController.getInstance());
             default -> throw new IOException("Page doesn't exist");
         }
         fxmlLoader.setLocation(PageJump.class.getResource("/frontend/" + destPageName +".fxml"));
@@ -41,7 +44,6 @@ public class PageJump {
             currentStage.show();
         }catch (IOException | RuntimeException e){
             e.printStackTrace();
-
         }
         return null;
     }
