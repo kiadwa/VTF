@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -46,6 +47,7 @@ public class MainPageController{
     private MediaProcessor mediaProcessor;
 
     private static MainPageController instance;
+    private ViewController viewController;
 
     private MainPageController(){}
 
@@ -82,6 +84,8 @@ public class MainPageController{
             return;
         }
         MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
+
+        ViewController.getInstance().getView_MediaView_mediaoutput().setMediaPlayer(new MediaPlayer(MediaProcessor.getInstance().getMedia()));
 
         PageJump.switchPage(event, MEDIA_VIEW);
 
