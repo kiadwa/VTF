@@ -2,19 +2,22 @@ package com.example.vtf.Controller;
 
 import com.example.vtf.Engine.MediaProcessor;
 import com.example.vtf.Engine.PageJump;
+import com.example.vtf.Ultilities.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
-import static com.example.vtf.UI.PAGE_INDEX.MEDIA_VIEW;
+import static com.example.vtf.Ultilities.PAGE_INDEX.MEDIA_VIEW;
 
 public class MainPageController{
     @FXML
@@ -61,10 +64,13 @@ public class MainPageController{
         uploadedFile = fileChooser.showOpenDialog(currentStage);
         if(uploadedFile != null){
             String fileName =  uploadedFile.getName();
-            long fileSize = uploadedFile.getTotalSpace();
+            String fileSize = Utils.getFileSize(uploadedFile);
+            String fileExt = Utils.getFileExtension(fileName);
 
             this.MainPage_TextField_FileName.setText(fileName);
-            //this.MainPage_TextField_FileSize.setText();
+            this.MainPage_TextField_FileSize.setText(fileSize);
+            this.MainPage_TextField_Ext.setText(fileExt);
+
         }else{
             System.out.println("There is no file");
         }
@@ -75,7 +81,10 @@ public class MainPageController{
             System.out.println("You haven't uploaded any file");
             return;
         }
+        MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
+
         PageJump.switchPage(event, MEDIA_VIEW);
+
 
     }
     @FXML

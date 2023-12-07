@@ -2,7 +2,6 @@ package com.example.vtf.Engine;
 
 import com.example.vtf.Controller.MainPageController;
 import com.example.vtf.Controller.ViewController;
-import com.example.vtf.UI.PAGE_INDEX;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,8 +11,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static com.example.vtf.UI.PAGE_INDEX.MAIN_PAGE;
-import static com.example.vtf.UI.PAGE_INDEX.MEDIA_VIEW;
+import static com.example.vtf.Ultilities.PAGE_INDEX.MAIN_PAGE;
+import static com.example.vtf.Ultilities.PAGE_INDEX.MEDIA_VIEW;
 
 public class PageJump {
 
