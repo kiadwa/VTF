@@ -37,6 +37,9 @@ public class ViewController {
     public MediaView getView_MediaView_mediaoutput(){
         return this.View_MediaView_mediaoutput;
     }
+    public void playMedia(){
+
+    }
 
     @FXML
     void View_Back(ActionEvent event) throws IOException {

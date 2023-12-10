@@ -84,10 +84,11 @@ public class MainPageController{
             return;
         }
         MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
-
-        ViewController.getInstance().getView_MediaView_mediaoutput().setMediaPlayer(new MediaPlayer(MediaProcessor.getInstance().getMedia()));
-
         PageJump.switchPage(event, MEDIA_VIEW);
+        ViewController.getInstance().getView_MediaView_mediaoutput().setMediaPlayer(new MediaPlayer(MediaProcessor.getInstance().getMedia()));
+        ViewController.getInstance().getView_MediaView_mediaoutput().getMediaPlayer().play();
+
+
 
 
     }
