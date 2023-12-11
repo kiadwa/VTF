@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static com.example.vtf.Ultilities.PAGE_INDEX.MEDIA_GIF_CUT;
 import static com.example.vtf.Ultilities.PAGE_INDEX.MEDIA_VIEW;
 
 public class MainPageController{
@@ -61,8 +62,8 @@ public class MainPageController{
     @FXML
     void MainPage_onAction_upload(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        //FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Media File (*.mp4)", "*.txt");
-        //fileChooser.getExtensionFilters().add(extensionFilter);
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Media File (*.mp4)", "*.mp4");
+        fileChooser.getExtensionFilters().add(extensionFilter);
         uploadedFile = fileChooser.showOpenDialog(currentStage);
         if(uploadedFile != null){
             String fileName =  uploadedFile.getName();
@@ -93,8 +94,12 @@ public class MainPageController{
 
     }
     @FXML
-    void MainPage_toGIF(ActionEvent event) {
-
+    void MainPage_toGIF(ActionEvent event) throws IOException {
+        if(uploadedFile == null){
+            System.out.println("You haven't uploaded any file");
+            return;
+        }
+        PageJump.switchPage(event, MEDIA_GIF_CUT);
     }
 
 }

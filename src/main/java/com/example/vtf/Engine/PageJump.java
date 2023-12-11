@@ -1,5 +1,6 @@
 package com.example.vtf.Engine;
 
+import com.example.vtf.Controller.GIFCutMediaController;
 import com.example.vtf.Controller.MainPageController;
 import com.example.vtf.Controller.ViewController;
 import javafx.event.Event;
@@ -11,8 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import static com.example.vtf.Ultilities.PAGE_INDEX.MAIN_PAGE;
-import static com.example.vtf.Ultilities.PAGE_INDEX.MEDIA_VIEW;
+import static com.example.vtf.Ultilities.PAGE_INDEX.*;
 
 public class PageJump {
 
@@ -23,6 +23,7 @@ public class PageJump {
         switch(destPageName){
             case MAIN_PAGE -> fxmlLoader.setController(MainPageController.getInstance());
             case MEDIA_VIEW -> fxmlLoader.setController(ViewController.getInstance());
+            case MEDIA_GIF_CUT -> fxmlLoader.setController(new GIFCutMediaController());
             default -> throw new IOException("Page doesn't exist");
         }
         fxmlLoader.setLocation(PageJump.class.getResource("/frontend/" + destPageName +".fxml"));
