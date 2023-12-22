@@ -1,16 +1,21 @@
 package com.example.vtf.Controller;
 
 import com.example.vtf.Engine.PageJump;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class GIFCutMediaController {
+public class GIFCutMediaController implements Initializable {
     //get the cut start range and end range from this UI
     // then using ffmpeg to cut, and export it into GIF file.
 
@@ -36,7 +41,14 @@ public class GIFCutMediaController {
 
     @FXML
     void GIFCutMedia_toGIF(ActionEvent event) {
-        if(endSliderVal < startSliderVal) return;
+        if(endSliderVal < startSliderVal) {
+            System.out.println("OH, can't cut if end duration is smaller than start");
+
+            return;
+        }
+        System.out.println("Can cut");
+
+
 
     }
 
@@ -60,5 +72,21 @@ public class GIFCutMediaController {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        GIFCutMedia_slider_startSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> location, Number arg1, Number arg2){
+                startSliderVal = GIFCutMedia_slider_startSlider.getValue();
+                endSliderVal = GIFCutMedia_slider_endSlider.getValue();
+
+            }
+
+        }
+
+
+
+        );
+    }
 }
 
