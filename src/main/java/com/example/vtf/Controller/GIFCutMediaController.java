@@ -1,6 +1,8 @@
 package com.example.vtf.Controller;
 
+import com.example.vtf.Engine.MediaProcessor;
 import com.example.vtf.Engine.PageJump;
+import com.example.vtf.FFmpegStream.FFmpegWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -33,6 +35,8 @@ public class GIFCutMediaController implements Initializable {
 
     double endSliderVal = 0;
     double startSliderVal = 0;
+    FFmpegWrapper fFmpegWrapper = new FFmpegWrapper();
+    MediaProcessor mediaProcessor = MediaProcessor.getInstance();
 
     @FXML
     void GIFCutMedia_back(ActionEvent event) throws IOException {
@@ -41,15 +45,27 @@ public class GIFCutMediaController implements Initializable {
 
     @FXML
     void GIFCutMedia_toGIF(ActionEvent event) {
-        if(endSliderVal < startSliderVal) {
+        disableSlider();
+        if(endSliderVal < startSliderVal ) {
             System.out.println("OH, can't cut if end duration is smaller than start");
-
+            enableSlider();
             return;
+
         }
-        System.out.println("Can cut");
 
 
 
+        enableSlider();
+
+
+    }
+    void disableSlider(){
+        GIFCutMedia_slider_startSlider.setDisable(true);
+        GIFCutMedia_slider_endSlider.setDisable(true);
+    }
+    void enableSlider(){
+        GIFCutMedia_slider_endSlider.setDisable(false);
+        GIFCutMedia_slider_startSlider.setDisable(false);
     }
 
     @FXML
@@ -79,6 +95,7 @@ public class GIFCutMediaController implements Initializable {
             public void changed(ObservableValue<? extends Number> location, Number arg1, Number arg2){
                 startSliderVal = GIFCutMedia_slider_startSlider.getValue();
                 endSliderVal = GIFCutMedia_slider_endSlider.getValue();
+
 
             }
 

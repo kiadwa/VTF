@@ -43,6 +43,12 @@ public class FFmpegWrapper {
         String convertCommand =  "ffmpeg.exe -i " + inputPath + " -c:v libx264 -c:a aac " + outputPath;
         return execute(convertCommand);
     }
+    public boolean cutMedia(String inputPath, String startTime, String endTime, String outputPath){
+        String cutCommand = "ffmpeg.exe -ss " + startTime + " -i " + inputPath + " -t " + endTime + " -c:v libx264 -c:a aac " + outputPath;
+        execute(cutCommand);
+        return true;
+
+    }
 
     public static void main(String[] args) {
 
@@ -51,13 +57,14 @@ public class FFmpegWrapper {
         FFmpegWrapper ffmpeg = new FFmpegWrapper();
 
         // Example: Convert a video file
-        String inputVideo = "src/main/resources/video.mp4"; // Replace with your input file path
-        String outputVideo = "src/main/resources/output.mp4"; // Replace with your desired output file path
+        String inputVideo = "src/main/resources/video1.mp4"; // Replace with your input file path
+        String outputVideo = "src/main/resources/output/output.mp4"; // Replace with your desired output file path
+        String outputConverted = "src/main/resources/output/output1.mp4";
 
-        if (ffmpeg.codecConvert(inputVideo, outputVideo)) {
-            System.out.println("Conversion successful.");
-        } else {
-            System.err.println("Conversion failed.");
-        }
+        ffmpeg.cutMedia(inputVideo,"00:00:01", "00:00:05", outputVideo);
+        //ffmpeg.codecConvert(outputVideo,outputConverted);
+
+
+
     }
 }
