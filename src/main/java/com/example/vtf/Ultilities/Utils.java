@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import org.bytedeco.ffmpeg.global.avutil;
+import org.bytedeco.javacv.FFmpegFrameGrabber;
 
 public class Utils {
 
@@ -30,6 +34,32 @@ public class Utils {
         }catch(IOException e){
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public static List<String> getDurationConversion(List<Double> input, double startPercentage, double endingPercentage){
+
+        List<String> result = new ArrayList<>();
+
+        double startDuration = input.get(0);
+        double endDuration = input.get(1);
+
+        startDuration = startDuration * startPercentage;
+        endDuration = endDuration * endingPercentage;
+
+
+
+        return result;
+    }
+
+    public static double getMediaDuration(String filePath) {
+        try (FFmpegFrameGrabber grabber = new FFmpegFrameGrabber(filePath)) {
+            grabber.start();
+            double duration = grabber.getLengthInTime() / (double) 1000000; //avutil.AV_TIME_BASE;
+            return duration;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
         }
     }
 }

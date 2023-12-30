@@ -70,6 +70,7 @@ public class MainPageController{
             String fileSize = Utils.getFileSize(uploadedFile);
             String fileExt = Utils.getFileExtension(fileName);
 
+
             this.MainPage_TextField_FileName.setText(fileName);
             this.MainPage_TextField_FileSize.setText(fileSize);
             this.MainPage_TextField_Ext.setText(fileExt);
@@ -99,7 +100,9 @@ public class MainPageController{
             System.out.println("You haven't uploaded any file");
             return;
         }
+        MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
         PageJump.switchPage(event, MEDIA_GIF_CUT);
+
     }
 
 }

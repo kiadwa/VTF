@@ -12,10 +12,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static com.example.vtf.Ultilities.Utils.getMediaDuration;
 
 public class GIFCutMediaController implements Initializable {
     //get the cut start range and end range from this UI
@@ -46,19 +50,28 @@ public class GIFCutMediaController implements Initializable {
     @FXML
     void GIFCutMedia_toGIF(ActionEvent event) {
         disableSlider();
-        if(endSliderVal < startSliderVal ) {
+        if (mediaProcessor.getMedia() != null) {
+            MediaPlayer mediaPlayer = mediaProcessor.getMediaPlayer();
+            mediaPlayer.setOnReady(() -> {
+                // This block is executed when the media is ready
+                Duration duration = mediaPlayer.getMedia().getDuration();
+                double durationInSeconds = duration.toSeconds();
+                System.out.println("Media duration: " + durationInSeconds + " seconds");
+            });
+
+            // Check if the media is ready
+        }
+
+        if (endSliderVal < startSliderVal) {
             System.out.println("OH, can't cut if end duration is smaller than start");
             enableSlider();
             return;
-
         }
 
-
-
         enableSlider();
-
-
     }
+
+
     void disableSlider(){
         GIFCutMedia_slider_startSlider.setDisable(true);
         GIFCutMedia_slider_endSlider.setDisable(true);
@@ -95,15 +108,8 @@ public class GIFCutMediaController implements Initializable {
             public void changed(ObservableValue<? extends Number> location, Number arg1, Number arg2){
                 startSliderVal = GIFCutMedia_slider_startSlider.getValue();
                 endSliderVal = GIFCutMedia_slider_endSlider.getValue();
-
-
             }
-
-        }
-
-
-
-        );
+        });
     }
 }
 
