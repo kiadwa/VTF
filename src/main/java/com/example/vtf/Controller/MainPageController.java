@@ -43,6 +43,9 @@ public class MainPageController{
     private Button MainPage_button_toGIF;
     @FXML
     private Button MainPage_button_view;
+    @FXML
+    private TextField MainPage_TextField_OutputName;
+
     private Stage currentStage;
     private File uploadedFile;
     private MediaProcessor mediaProcessor;
@@ -62,21 +65,28 @@ public class MainPageController{
     @FXML
     void MainPage_onAction_upload(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Media File (*.mp4)", "*.mp4");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Media File (*.mp4)",
+                                                                                                "*.mp4");
         fileChooser.getExtensionFilters().add(extensionFilter);
         uploadedFile = fileChooser.showOpenDialog(currentStage);
+
         if(uploadedFile != null){
+
             String fileName =  uploadedFile.getName();
             String fileSize = Utils.getFileSize(uploadedFile);
             String fileExt = Utils.getFileExtension(fileName);
 
-
             this.MainPage_TextField_FileName.setText(fileName);
             this.MainPage_TextField_FileSize.setText(fileSize);
             this.MainPage_TextField_Ext.setText(fileExt);
+
             MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
             MediaProcessor.getInstance().setFilePath(uploadedFile.getPath());
-            MediaProcessor.getInstance().setOutputPath("src/resources/output/" + fileName);
+
+            System.out.println("getPath: " + uploadedFile.getPath());
+            System.out.println("getAbsPath" + uploadedFile.getAbsolutePath());
+
+
 
         }else{
             System.out.println("There is no file");
@@ -92,21 +102,23 @@ public class MainPageController{
         PageJump.switchPage(event, MEDIA_VIEW);
         ViewController.getInstance().getView_MediaView_mediaoutput().setMediaPlayer(new MediaPlayer(MediaProcessor.getInstance().getMedia()));
         ViewController.getInstance().getView_MediaView_mediaoutput().getMediaPlayer().play();
-
-
-
-
     }
     @FXML
     void MainPage_toGIF(ActionEvent event) throws IOException {
         if(uploadedFile == null){
             System.out.println("You haven't uploaded any file");
             return;
+        }else if(uploadedFile.getName().equals(MainPage_TextField_OutputName.getText())){
+            System.out.println("Name cannot be duplicated");
+            return;
+        }else if(uploadedFile.getName().isBlank() || uploadedFile.getName().isEmpty()){
+            System.out.println("Name cannot be blank or empty");
+            return;
+        }else {
+            MediaProcessor.getInstance().setOutputPath();
+            PageJump.switchPage(event, MEDIA_GIF_CUT);
         }
-        PageJump.switchPage(event, MEDIA_GIF_CUT);
-
     }
-
 }
 
 

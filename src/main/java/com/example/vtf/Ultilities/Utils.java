@@ -37,6 +37,7 @@ public class Utils {
         }
     }
 
+
     public static List<String> getDurationConversion(List<Double> input, double startPercentage, double endingPercentage){
 
         List<String> result = new ArrayList<>();
@@ -46,8 +47,6 @@ public class Utils {
 
         startDuration = startDuration * startPercentage;
         endDuration = endDuration * endingPercentage;
-
-
 
         return result;
     }
@@ -60,6 +59,15 @@ public class Utils {
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
+        }
+    }
+    /**Get Media Name from output Path to modified the output name so that it doesn't duplicate with input*/
+    public static String getMediaNameFromPath(String filePath){
+        int dashIndex = filePath.lastIndexOf("/");
+        if(dashIndex == -1 || dashIndex == filePath.length() - 1){
+            return "";
+        } else{
+            return filePath.substring(dashIndex + 1);
         }
     }
 }

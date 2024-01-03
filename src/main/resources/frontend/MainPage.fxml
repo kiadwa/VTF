@@ -10,15 +10,17 @@
    <children>
       <Text layoutX="37.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VTGF" wrappingWidth="36.83203125" />
       <Button fx:id="MainPage_button_uploadButton" layoutX="107.0" layoutY="310.0" mnemonicParsing="false" onAction="#MainPage_onAction_upload" text="Click to upload " />
-      <TextField fx:id="MainPage_TextField_FileName" layoutX="101.0" layoutY="84.0" />
-      <Label layoutX="41.0" layoutY="88.0" text="File Name" />
-      <TextField fx:id="MainPage_TextField_FileSize" layoutX="101.0" layoutY="130.0" />
-      <Text layoutX="46.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Size" />
-      <Text layoutX="328.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ext" />
-      <TextField fx:id="MainPage_TextField_Ext" layoutX="369.0" layoutY="130.0" />
-      <Text layoutX="313.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" />
-      <TextField fx:id="MainPage_TextField_Duration" layoutX="369.0" layoutY="84.0" />
+      <TextField fx:id="MainPage_TextField_FileName" editable="false" layoutX="101.0" layoutY="84.0" />
+      <Label fx:id="MainPage_Text_FileName" layoutX="41.0" layoutY="88.0" text="File Name" />
+      <TextField fx:id="MainPage_TextField_FileSize" editable="false" layoutX="101.0" layoutY="130.0" />
+      <Text fx:id="MainPage_Text_FileSize" layoutX="23.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Size (MB)" />
+      <Text fx:id="MainPage_Text_Ext" layoutX="328.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ext" />
+      <TextField fx:id="MainPage_TextField_Ext" editable="false" layoutX="369.0" layoutY="130.0" />
+      <Text fx:id="MainPage_Text_Duration" layoutX="313.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" />
+      <TextField fx:id="MainPage_TextField_Duration" editable="false" layoutX="369.0" layoutY="84.0" />
       <Button fx:id="MainPage_button_view" layoutX="261.0" layoutY="310.0" mnemonicParsing="false" onAction="#MainPage_View" text="View" />
       <Button fx:id="MainPage_button_toGIF" layoutX="380.0" layoutY="310.0" mnemonicParsing="false" onAction="#MainPage_toGIF" text="To GIF" />
+      <TextField fx:id="MainPage_TextField_OutputName" layoutX="369.0" layoutY="175.0" />
+      <Text fx:id="MainPage_Text_outputName" layoutX="292.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Output Name" />
    </children>
 </AnchorPane>

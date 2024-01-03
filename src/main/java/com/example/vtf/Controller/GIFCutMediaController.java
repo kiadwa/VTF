@@ -42,13 +42,14 @@ public class GIFCutMediaController implements Initializable {
     double startSliderVal = 0;
     FFmpegWrapper fFmpegWrapper = new FFmpegWrapper();
     MediaProcessor mediaProcessor = MediaProcessor.getInstance();
+    @FXML
+    private MediaView GIFCutMedia_mediaView_preview;
 
     @FXML
     void GIFCutMedia_back(ActionEvent event) throws IOException {
-        PageJump.getMainPage();
+        PageJump.switchPage(event,"MainPage");
     }
-    @FXML
-    private MediaView GIFCutMedia_mediaView_preview;
+
 
     @FXML
     void GIFCutMedia_toGIF(ActionEvent event) {
@@ -64,7 +65,15 @@ public class GIFCutMediaController implements Initializable {
                 System.out.println(startSliderVal);
                 double start_second =  durationInSeconds * startSliderVal * 0.01;
                 double end_second =  durationInSeconds * endSliderVal * 0.01;
+                String ss = String.valueOf(start_second);
+                String du = String.valueOf(end_second);
+                //cut file here
+                System.out.println("Media Path " + MediaProcessor.getInstance().getFilePath());
 
+                FFmpegWrapper.cutMedia(MediaProcessor.getInstance().getFilePath(),
+                                        ss,
+                                        du,
+                                        MediaProcessor.getInstance().getOutputPath());
 
             });
             // Check if the media is ready
