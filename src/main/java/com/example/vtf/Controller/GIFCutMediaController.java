@@ -13,6 +13,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -46,6 +47,8 @@ public class GIFCutMediaController implements Initializable {
     void GIFCutMedia_back(ActionEvent event) throws IOException {
         PageJump.getMainPage();
     }
+    @FXML
+    private MediaView GIFCutMedia_mediaView_preview;
 
     @FXML
     void GIFCutMedia_toGIF(ActionEvent event) {
@@ -57,8 +60,13 @@ public class GIFCutMediaController implements Initializable {
                 Duration duration = mediaPlayer.getMedia().getDuration();
                 double durationInSeconds = duration.toSeconds();
                 System.out.println("Media duration: " + durationInSeconds + " seconds");
-            });
+                System.out.println(endSliderVal);
+                System.out.println(startSliderVal);
+                double start_second =  durationInSeconds * startSliderVal * 0.01;
+                double end_second =  durationInSeconds * endSliderVal * 0.01;
 
+
+            });
             // Check if the media is ready
         }
 
@@ -67,7 +75,6 @@ public class GIFCutMediaController implements Initializable {
             enableSlider();
             return;
         }
-
         enableSlider();
     }
 
@@ -103,11 +110,18 @@ public class GIFCutMediaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        GIFCutMedia_slider_endSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            //initiate a listener to keep track of change on the end slider
+            @Override
+            public void changed(ObservableValue<? extends Number> location, Number arg1, Number arg2){
+                endSliderVal = GIFCutMedia_slider_endSlider.getValue();
+            }
+        });
         GIFCutMedia_slider_startSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            //initiate a listener to keep track of change on the start slider
             @Override
             public void changed(ObservableValue<? extends Number> location, Number arg1, Number arg2){
                 startSliderVal = GIFCutMedia_slider_startSlider.getValue();
-                endSliderVal = GIFCutMedia_slider_endSlider.getValue();
             }
         });
     }

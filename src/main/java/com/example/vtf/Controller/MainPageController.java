@@ -74,6 +74,9 @@ public class MainPageController{
             this.MainPage_TextField_FileName.setText(fileName);
             this.MainPage_TextField_FileSize.setText(fileSize);
             this.MainPage_TextField_Ext.setText(fileExt);
+            MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
+            MediaProcessor.getInstance().setFilePath(uploadedFile.getPath());
+            MediaProcessor.getInstance().setOutputPath("src/resources/output/" + fileName);
 
         }else{
             System.out.println("There is no file");
@@ -100,7 +103,6 @@ public class MainPageController{
             System.out.println("You haven't uploaded any file");
             return;
         }
-        MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
         PageJump.switchPage(event, MEDIA_GIF_CUT);
 
     }

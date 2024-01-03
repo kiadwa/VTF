@@ -11,6 +11,8 @@ public class MediaProcessor {
     Media media;
     private static MediaProcessor instance;
     FFmpegWrapper fFmpegWrapper = new FFmpegWrapper();
+    String filePath = "";
+    String outputPath = "";
 
     private MediaProcessor(){}
 
@@ -18,13 +20,27 @@ public class MediaProcessor {
         if (instance == null) {
             instance = new MediaProcessor();
         }
-
         return instance;
     }
     public void setMedia(Media media){
         this.media = media;
     }
-    public Media getMedia(){return media;}
+    public void setOutputPath(String filePath){
+        this.outputPath = filePath;
+    }
+    public String getOutputPath(){
+        return this.outputPath;
+    }
+    public void setFilePath(String filePath){
+        this.filePath = filePath;
+    }
+    public String getFilePath(){
+        return this.filePath;
+    }
+
+    public Media getMedia(){
+        return media;
+    }
 
     public MediaPlayer getMediaPlayer() {
         return new MediaPlayer(media);

@@ -10,7 +10,7 @@ public class FFmpegWrapper {
     static final String FFMPEG_PATH = "src/lib/ffmpeg-6.0-essentials_build/bin";
     String ffmpegCommand;
 
-    public boolean execute(String command) {
+    public static boolean execute(String command) {
 
         File ffmpegFile = new File(FFMPEG_PATH);
         if (!ffmpegFile.exists()) {
@@ -39,12 +39,12 @@ public class FFmpegWrapper {
         }
     }
 
-    public boolean codecConvert(String inputPath, String outputPath) {
+    public static boolean codecConvert(String inputPath, String outputPath) {
         String convertCommand =  "ffmpeg.exe -i " + inputPath + " -c:v libx264 -c:a aac " + outputPath;
         return execute(convertCommand);
     }
-    public boolean cutMedia(String inputPath, String startTime, String endTime, String outputPath){
-        String cutCommand = "ffmpeg.exe -ss " + startTime + " -i " + inputPath + " -t " + endTime + " -c:v libx264 -c:a aac " + outputPath;
+    public static boolean cutMedia(String inputPath, String startTime, String duration, String outputPath){
+        String cutCommand = "ffmpeg.exe -ss " + startTime + " -i " + inputPath + " -t " + duration + " -c:v libx264 -c:a aac " + outputPath;
         execute(cutCommand);
         return true;
 
@@ -61,7 +61,7 @@ public class FFmpegWrapper {
         String outputVideo = "src/main/resources/output/output.mp4"; // Replace with your desired output file path
         String outputConverted = "src/main/resources/output/output1.mp4";
 
-        ffmpeg.cutMedia(inputVideo,"00:00:01", "00:00:05", outputVideo);
+        ffmpeg.cutMedia(inputVideo,"1", "5", outputVideo);
         //ffmpeg.codecConvert(outputVideo,outputConverted);
 
 

@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <MediaView fitHeight="300.0" fitWidth="500.0" layoutX="50.0" layoutY="15.0" />
+      <MediaView fx:id="GIFCutMedia_mediaView_preview" fitHeight="300.0" fitWidth="500.0" layoutX="50.0" layoutY="15.0" />
       <Slider fx:id="GIFCutMedia_slider_startSlider" layoutX="109.0" layoutY="326.0" onDragDetected="#startSlide" onDragDone="#startDurationChoose" prefHeight="14.0" prefWidth="368.0" />
       <Slider fx:id="GIFCutMedia_slider_endSlider" layoutX="110.0" layoutY="348.0" onDragDetected="#endSlider" onDragDone="#endDurationChoose" prefHeight="14.0" prefWidth="368.0" value="100.0" />
       <Label layoutX="61.0" layoutY="325.0" text="Start" />
