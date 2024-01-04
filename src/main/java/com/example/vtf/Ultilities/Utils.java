@@ -21,6 +21,16 @@ public class Utils {
             return fileName.substring(dotIndex + 1);
         }
     }
+    public static String swapExtensionIntoGIF(String fileName){
+        int dotIndex = fileName.lastIndexOf('.');
+        if(dotIndex == -1 || dotIndex == fileName.length() - 1){
+            
+        }else{
+
+        }
+
+    }
+
     /**Use to get media file duration into String*/
     public static String getMediaFileDuration(File file){
         return null;
@@ -63,7 +73,7 @@ public class Utils {
     }
     /**Get Media Name from output Path to modified the output name so that it doesn't duplicate with input*/
     public static String getMediaNameFromPath(String filePath){
-        int dashIndex = filePath.lastIndexOf("/");
+        int dashIndex = filePath.lastIndexOf('/');
         if(dashIndex == -1 || dashIndex == filePath.length() - 1){
             return "";
         } else{

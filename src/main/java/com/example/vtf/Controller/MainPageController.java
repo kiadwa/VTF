@@ -85,9 +85,6 @@ public class MainPageController{
 
             System.out.println("getPath: " + uploadedFile.getPath());
             System.out.println("getAbsPath" + uploadedFile.getAbsolutePath());
-
-
-
         }else{
             System.out.println("There is no file");
         }
@@ -111,11 +108,11 @@ public class MainPageController{
         }else if(uploadedFile.getName().equals(MainPage_TextField_OutputName.getText())){
             System.out.println("Name cannot be duplicated");
             return;
-        }else if(uploadedFile.getName().isBlank() || uploadedFile.getName().isEmpty()){
+        }else if(MainPage_TextField_OutputName.getText().isBlank() || MainPage_TextField_OutputName.getText().isEmpty()){
             System.out.println("Name cannot be blank or empty");
             return;
-        }else {
-            MediaProcessor.getInstance().setOutputPath();
+        }else{
+            MediaProcessor.getInstance().setOutputPath("src/main/resources/output/" + MainPage_TextField_OutputName.getText());
             PageJump.switchPage(event, MEDIA_GIF_CUT);
         }
     }
