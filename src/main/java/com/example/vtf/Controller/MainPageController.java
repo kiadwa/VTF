@@ -112,7 +112,7 @@ public class MainPageController{
             System.out.println("Name cannot be blank or empty");
             return;
         }else{
-            MediaProcessor.getInstance().setOutputPath("src/main/resources/output/" + MainPage_TextField_OutputName.getText());
+            MediaProcessor.getInstance().setOutputPath("src/main/resources/output/" + Utils.swapExtensionIntoGIF(MainPage_TextField_OutputName.getText()));
             PageJump.switchPage(event, MEDIA_GIF_CUT);
         }
     }
