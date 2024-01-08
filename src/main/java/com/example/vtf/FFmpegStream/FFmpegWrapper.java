@@ -44,7 +44,7 @@ public class FFmpegWrapper {
         return execute(convertCommand);
     }
     public static boolean cutMedia(String inputPath, String startTime, String duration, String outputPath){
-        String cutCommand = "ffmpeg.exe -ss " + startTime + " -i " + inputPath + " -t " + duration + " -c:v libx264 -c:a aac " + outputPath;
+        String cutCommand = "ffmpeg.exe -ss " + startTime + " -i " + inputPath + " -t " + duration + " -vf \"fps=30,scale=320:-1:flags=lanczos\" " + outputPath;
         execute(cutCommand);
         return true;
 
