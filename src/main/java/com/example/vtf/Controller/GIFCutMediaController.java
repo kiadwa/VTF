@@ -42,6 +42,8 @@ public class GIFCutMediaController implements Initializable {
 
     double endSliderVal = 0;
     double startSliderVal = 0;
+    int startDu = 0;
+    int endDu = 0;
     FFmpegWrapper fFmpegWrapper = new FFmpegWrapper();
     MediaProcessor mediaProcessor = MediaProcessor.getInstance();
     @FXML
@@ -54,10 +56,26 @@ public class GIFCutMediaController implements Initializable {
 
     @FXML
     void GIFCutMedia_View(ActionEvent event) {
-        MediaPlayer md = MediaProcessor.getInstance().getMediaPlayer();
-        GIFCutMedia_mediaView_preview.setMediaPlayer(md);
-        GIFCutMedia_mediaView_preview.getMediaPlayer().play();
+        if(GIFCutMedia_mediaView_preview.getMediaPlayer() == null) {
 
+            MediaPlayer md = MediaProcessor.getInstance().getMediaPlayer();
+            GIFCutMedia_mediaView_preview.setMediaPlayer(md);
+        }
+        if(startDu > endDu){
+            System.out.println("endDu can't be smaller than startDu");
+
+        }
+        else if(GIFCutMedia_mediaView_preview.getMediaPlayer().getStatus() != MediaPlayer.Status.PLAYING) {
+
+            GIFCutMedia_mediaView_preview.getMediaPlayer().setStartTime(Duration.seconds(startDu));
+            GIFCutMedia_mediaView_preview.getMediaPlayer().setStopTime(Duration.seconds(endDu));
+            System.out.println(startDu);
+            System.out.println(endDu);
+            GIFCutMedia_mediaView_preview.getMediaPlayer().play();
+
+        }else if(GIFCutMedia_mediaView_preview.getMediaPlayer().getStatus() == MediaPlayer.Status.PLAYING){
+            GIFCutMedia_mediaView_preview.getMediaPlayer().stop();
+        }
     }
 
     @FXML
@@ -73,18 +91,19 @@ public class GIFCutMediaController implements Initializable {
 
                 double start_second =  durationInSeconds * startSliderVal * 0.01;
                 double end_second =  durationInSeconds * endSliderVal * 0.01;
+
                 String ss = String.valueOf(start_second);
-                String du = String.valueOf(end_second);
+                String du = String.valueOf(end_second - start_second);
                 //cut file here
+                System.out.println("start time: " + ss);
+                System.out.println("duration: " + du);
                 System.out.println("Media Path " + MediaProcessor.getInstance().getFilePath());
 
                 FFmpegWrapper.cutMedia(MediaProcessor.getInstance().getFilePath(),
                                         ss,
                                         du,
                                         MediaProcessor.getInstance().getOutputPath());
-
             });
-            // Check if the media is ready
         }
 
         if (endSliderVal < startSliderVal) {
@@ -132,6 +151,9 @@ public class GIFCutMediaController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> location, Number arg1, Number arg2){
                 endSliderVal = GIFCutMedia_slider_endSlider.getValue();
+                endDu = (int) (mediaProcessor.getMedia().getDuration().toSeconds() * endSliderVal * 0.01);
+                System.out.println(mediaProcessor.getMedia().getDuration().toSeconds());
+                System.out.println("On slider endDu: " + endDu);
             }
         });
         GIFCutMedia_slider_startSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -139,6 +161,9 @@ public class GIFCutMediaController implements Initializable {
             @Override
             public void changed(ObservableValue<? extends Number> location, Number arg1, Number arg2){
                 startSliderVal = GIFCutMedia_slider_startSlider.getValue();
+                startDu = (int) (mediaProcessor.getMedia().getDuration().toSeconds() * startSliderVal * 0.01);
+                System.out.println(mediaProcessor.getMedia().getDuration().toSeconds());
+                System.out.println("On slider startDu: " + startDu);
             }
         });
     }

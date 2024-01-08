@@ -49,11 +49,7 @@ public class FFmpegWrapper {
         return true;
 
     }
-    public static boolean toGIF(String inputPath, String outputPath){
-        String toGIFCommand = "ffmpeg.exe -i "+ inputPath +" -vf \"fps=10,scale=320:-1:flags=lanczos\" -c:v gif " + outputPath;
-        execute(toGIFCommand);
-        return true;
-    }
+
 
 
     public static void main(String[] args) {
@@ -67,7 +63,7 @@ public class FFmpegWrapper {
         String outputVideo = "src/main/resources/output/output.mp4"; // Replace with your desired output file path
         String outputConverted = "src/main/resources/output/output1.mp4";
 
-        ffmpeg.cutMedia(inputVideo,"1", "5", outputVideo);
+        ffmpeg.cutMedia(inputVideo,"3", "3", outputVideo);
         //ffmpeg.codecConvert(outputVideo,outputConverted);
 
 

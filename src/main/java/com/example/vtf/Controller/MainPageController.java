@@ -113,6 +113,7 @@ public class MainPageController{
 
         }else{
             MediaProcessor.getInstance().setOutputPath("src/main/resources/output/" + Utils.swapExtensionIntoGIF(MainPage_TextField_OutputName.getText()));
+            MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
             PageJump.switchPage(event, MEDIA_GIF_CUT);
         }
     }
