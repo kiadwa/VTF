@@ -57,6 +57,7 @@ public class GIFCutMediaController implements Initializable {
         MediaPlayer md = MediaProcessor.getInstance().getMediaPlayer();
         GIFCutMedia_mediaView_preview.setMediaPlayer(md);
         GIFCutMedia_mediaView_preview.getMediaPlayer().play();
+
     }
 
     @FXML
@@ -69,7 +70,7 @@ public class GIFCutMediaController implements Initializable {
                 Duration duration = mediaPlayer.getMedia().getDuration();
                 double durationInSeconds = duration.toSeconds();
                 System.out.println("Media duration: " + durationInSeconds + " seconds");
-                
+
                 double start_second =  durationInSeconds * startSliderVal * 0.01;
                 double end_second =  durationInSeconds * endSliderVal * 0.01;
                 String ss = String.valueOf(start_second);
