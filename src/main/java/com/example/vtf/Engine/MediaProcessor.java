@@ -13,6 +13,7 @@ public class MediaProcessor {
     FFmpegWrapper fFmpegWrapper = new FFmpegWrapper();
     String filePath = "";
     String outputPath = "";
+    String fileName = "";
 
     private MediaProcessor(){}
 
@@ -21,6 +22,12 @@ public class MediaProcessor {
             instance = new MediaProcessor();
         }
         return instance;
+    }
+    public void setFileName(String fileName){
+        this.fileName = fileName;
+    }
+    public String getFileName(){
+        return this.fileName;
     }
     public void setMedia(Media media){
         this.media = media;

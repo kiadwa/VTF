@@ -22,6 +22,9 @@ public class ViewController {
     @FXML
     private Button View_button_toGIF;
 
+    @FXML
+    private Button View_button_play;
+
     private MediaProcessor mediaProcessor;
 
     private static ViewController instance;
@@ -48,11 +51,16 @@ public class ViewController {
 
     @FXML
     void View_MediaView(ActionEvent event) {
-
+        ViewController.getInstance().getView_MediaView_mediaoutput().getMediaPlayer().play();
     }
 
     @FXML
-    void View_ToGIF(ActionEvent event) {
+    void View_ToGIF(ActionEvent event) throws IOException {
+        PageJump.switchPage(event, "GIFCutMedia");
+    }
 
+    @FXML
+    void View_play(ActionEvent event) {
+        ViewController.getInstance().getView_MediaView_mediaoutput().getMediaPlayer().play();
     }
 }

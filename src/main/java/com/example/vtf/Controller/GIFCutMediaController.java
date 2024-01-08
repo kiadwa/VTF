@@ -28,6 +28,8 @@ public class GIFCutMediaController implements Initializable {
 
     @FXML
     private Button GIFCutMedia_button_back;
+    @FXML
+    private Button GIFCutMedia_button_View;
 
     @FXML
     private Button GIFCutMedia_button_toGIF;
@@ -50,6 +52,12 @@ public class GIFCutMediaController implements Initializable {
         PageJump.switchPage(event,"MainPage");
     }
 
+    @FXML
+    void GIFCutMedia_View(ActionEvent event) {
+        MediaPlayer md = MediaProcessor.getInstance().getMediaPlayer();
+        GIFCutMedia_mediaView_preview.setMediaPlayer(md);
+        GIFCutMedia_mediaView_preview.getMediaPlayer().play();
+    }
 
     @FXML
     void GIFCutMedia_toGIF(ActionEvent event) {
@@ -61,8 +69,7 @@ public class GIFCutMediaController implements Initializable {
                 Duration duration = mediaPlayer.getMedia().getDuration();
                 double durationInSeconds = duration.toSeconds();
                 System.out.println("Media duration: " + durationInSeconds + " seconds");
-                System.out.println(endSliderVal);
-                System.out.println(startSliderVal);
+                
                 double start_second =  durationInSeconds * startSliderVal * 0.01;
                 double end_second =  durationInSeconds * endSliderVal * 0.01;
                 String ss = String.valueOf(start_second);

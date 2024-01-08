@@ -72,7 +72,7 @@ public class MainPageController{
 
         if(uploadedFile != null){
 
-            String fileName =  uploadedFile.getName();
+            String fileName = uploadedFile.getName();
             String fileSize = Utils.getFileSize(uploadedFile);
             String fileExt = Utils.getFileExtension(fileName);
 
@@ -82,9 +82,9 @@ public class MainPageController{
 
             MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
             MediaProcessor.getInstance().setFilePath(uploadedFile.getPath());
+            MediaProcessor.getInstance().setFileName(fileName);
 
-            System.out.println("getPath: " + uploadedFile.getPath());
-            System.out.println("getAbsPath" + uploadedFile.getAbsolutePath());
+
         }else{
             System.out.println("There is no file");
         }
@@ -98,19 +98,19 @@ public class MainPageController{
         MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
         PageJump.switchPage(event, MEDIA_VIEW);
         ViewController.getInstance().getView_MediaView_mediaoutput().setMediaPlayer(new MediaPlayer(MediaProcessor.getInstance().getMedia()));
-        ViewController.getInstance().getView_MediaView_mediaoutput().getMediaPlayer().play();
+        //ViewController.getInstance().getView_MediaView_mediaoutput().getMediaPlayer().play();
     }
     @FXML
     void MainPage_toGIF(ActionEvent event) throws IOException {
         if(uploadedFile == null){
             System.out.println("You haven't uploaded any file");
-            return;
+
         }else if(uploadedFile.getName().equals(MainPage_TextField_OutputName.getText())){
             System.out.println("Name cannot be duplicated");
-            return;
+
         }else if(MainPage_TextField_OutputName.getText().isBlank() || MainPage_TextField_OutputName.getText().isEmpty()){
             System.out.println("Name cannot be blank or empty");
-            return;
+
         }else{
             MediaProcessor.getInstance().setOutputPath("src/main/resources/output/" + Utils.swapExtensionIntoGIF(MainPage_TextField_OutputName.getText()));
             PageJump.switchPage(event, MEDIA_GIF_CUT);

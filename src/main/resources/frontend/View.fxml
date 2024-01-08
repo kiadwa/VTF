@@ -9,5 +9,6 @@
       <MediaView fx:id="View_MediaView_mediaoutput" fitHeight="400.0" fitWidth="600.0" layoutX="50.0" layoutY="29.0" onError="#View_MediaView" />
       <Button fx:id="View_button_Back" layoutX="633.0" layoutY="434.0" mnemonicParsing="false" onAction="#View_Back" text="Back" />
       <Button fx:id="View_button_toGIF" layoutX="28.0" layoutY="434.0" mnemonicParsing="false" onAction="#View_ToGIF" text="To GIF" />
+      <Button fx:id="View_button_play" layoutX="324.0" layoutY="434.0" mnemonicParsing="false" onAction="#View_play" text="Play" />
    </children>
 </AnchorPane>

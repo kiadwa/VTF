@@ -13,7 +13,8 @@
       <Slider fx:id="GIFCutMedia_slider_endSlider" layoutX="110.0" layoutY="348.0" onDragDetected="#endSlider" onDragDone="#endDurationChoose" prefHeight="14.0" prefWidth="368.0" value="100.0" />
       <Label layoutX="61.0" layoutY="325.0" text="Start" />
       <Label layoutX="60.0" layoutY="347.0" text="End" />
-      <Button fx:id="GIFCutMedia_button_toGIF" layoutX="109.0" layoutY="364.0" mnemonicParsing="false" onAction="#GIFCutMedia_toGIF" text="To GIF" />
-      <Button fx:id="GIFCutMedia_button_back" layoutX="389.0" layoutY="364.0" mnemonicParsing="false" onAction="#GIFCutMedia_back" text="Back" />
+      <Button fx:id="GIFCutMedia_button_toGIF" layoutX="259.0" layoutY="364.0" mnemonicParsing="false" onAction="#GIFCutMedia_toGIF" text="To GIF" />
+      <Button fx:id="GIFCutMedia_button_back" layoutX="498.0" layoutY="364.0" mnemonicParsing="false" onAction="#GIFCutMedia_back" text="Back" />
+      <Button fx:id="GIFCutMedia_button_View" layoutX="53.0" layoutY="364.0" mnemonicParsing="false" onAction="#GIFCutMedia_View" text="View" />
    </children>
 </AnchorPane>
