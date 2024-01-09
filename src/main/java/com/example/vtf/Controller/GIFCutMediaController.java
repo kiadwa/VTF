@@ -86,19 +86,19 @@ public class GIFCutMediaController implements Initializable {
             mediaPlayer.setOnReady(() -> {
                 // This block is executed when the media is ready
                 Duration duration = mediaPlayer.getMedia().getDuration();
+
                 double durationInSeconds = duration.toSeconds();
-                System.out.println("Media duration: " + durationInSeconds + " seconds");
 
                 double start_second =  durationInSeconds * startSliderVal * 0.01;
                 double end_second =  durationInSeconds * endSliderVal * 0.01;
 
                 String ss = String.valueOf(start_second);
                 String du = String.valueOf(end_second - start_second);
-                //cut file here
+                //test print
                 System.out.println("start time: " + ss);
                 System.out.println("duration: " + du);
                 System.out.println("Media Path " + MediaProcessor.getInstance().getFilePath());
-
+                //cut file here
                 FFmpegWrapper.cutMedia(MediaProcessor.getInstance().getFilePath(),
                                         ss,
                                         du,
@@ -153,7 +153,6 @@ public class GIFCutMediaController implements Initializable {
                 endSliderVal = GIFCutMedia_slider_endSlider.getValue();
                 endDu = (int) (mediaProcessor.getMedia().getDuration().toSeconds() * endSliderVal * 0.01);
                 System.out.println(mediaProcessor.getMedia().getDuration().toSeconds());
-                System.out.println("On slider endDu: " + endDu);
             }
         });
         GIFCutMedia_slider_startSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -163,7 +162,6 @@ public class GIFCutMediaController implements Initializable {
                 startSliderVal = GIFCutMedia_slider_startSlider.getValue();
                 startDu = (int) (mediaProcessor.getMedia().getDuration().toSeconds() * startSliderVal * 0.01);
                 System.out.println(mediaProcessor.getMedia().getDuration().toSeconds());
-                System.out.println("On slider startDu: " + startDu);
             }
         });
     }

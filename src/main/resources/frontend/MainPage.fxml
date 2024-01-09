@@ -14,13 +14,11 @@
       <Label fx:id="MainPage_Text_FileName" layoutX="41.0" layoutY="88.0" text="File Name" />
       <TextField fx:id="MainPage_TextField_FileSize" editable="false" layoutX="101.0" layoutY="130.0" />
       <Text fx:id="MainPage_Text_FileSize" layoutX="23.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Size (MB)" />
-      <Text fx:id="MainPage_Text_Ext" layoutX="328.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ext" />
-      <TextField fx:id="MainPage_TextField_Ext" editable="false" layoutX="369.0" layoutY="130.0" />
-      <Text fx:id="MainPage_Text_Duration" layoutX="313.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration" />
-      <TextField fx:id="MainPage_TextField_Duration" editable="false" layoutX="369.0" layoutY="84.0" />
+      <Text fx:id="MainPage_Text_Ext" layoutX="329.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ext" />
+      <TextField fx:id="MainPage_TextField_Ext" editable="false" layoutX="369.0" layoutY="84.0" />
       <Button fx:id="MainPage_button_view" layoutX="256.0" layoutY="310.0" mnemonicParsing="false" onAction="#MainPage_View" prefHeight="25.0" prefWidth="73.0" text="View" />
       <Button fx:id="MainPage_button_toGIF" layoutX="405.0" layoutY="310.0" mnemonicParsing="false" onAction="#MainPage_toGIF" prefHeight="25.0" prefWidth="86.0" text="To GIF" />
-      <TextField fx:id="MainPage_TextField_OutputName" layoutX="369.0" layoutY="175.0" />
-      <Text fx:id="MainPage_Text_outputName" layoutX="292.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Output Name" />
+      <TextField fx:id="MainPage_TextField_OutputName" layoutX="405.0" layoutY="130.0" />
+      <Text fx:id="MainPage_Text_outputName" layoutX="274.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Output Name (Fill here)" />
    </children>
 </AnchorPane>

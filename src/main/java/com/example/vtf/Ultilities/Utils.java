@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import org.bytedeco.ffmpeg.global.avutil;
@@ -39,12 +40,13 @@ public class Utils {
     public static String getMediaFileDuration(File file){
         return null;
     }
-
+    /**Use to get File size*/
     public static String getFileSize(File file){
         Path path = FileSystems.getDefault().getPath(file.getAbsolutePath());
         try{
+            DecimalFormat df = new DecimalFormat("#.##");
             long fileSize = Files.size(path);
-            return String.valueOf(fileSize * 0.000001);
+            return df.format(fileSize * 0.000001);
         }catch(IOException e){
             e.printStackTrace();
             return null;

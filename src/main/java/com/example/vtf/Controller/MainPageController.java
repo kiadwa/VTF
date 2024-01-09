@@ -24,19 +24,12 @@ import static com.example.vtf.Ultilities.PAGE_INDEX.MEDIA_VIEW;
 public class MainPageController{
     @FXML
     private AnchorPane MainPage_AnchorPane_pane;
-
-    @FXML
-    private TextField MainPage_TextField_Duration;
-
     @FXML
     private TextField MainPage_TextField_Ext;
-
     @FXML
     private TextField MainPage_TextField_FileName;
-
     @FXML
     private TextField MainPage_TextField_FileSize;
-
     @FXML
     private Button MainPage_button_uploadButton;
     @FXML
@@ -45,14 +38,11 @@ public class MainPageController{
     private Button MainPage_button_view;
     @FXML
     private TextField MainPage_TextField_OutputName;
-
     private Stage currentStage;
-    private File uploadedFile;
+    private File uploadedFile = null;
     private MediaProcessor mediaProcessor;
-
     private static MainPageController instance;
     private ViewController viewController;
-
     private MainPageController(){}
 
     public static MainPageController getInstance(){
@@ -61,33 +51,49 @@ public class MainPageController{
         }
         return instance;
     }
+    @FXML
+    public void initialize(){
+        if(this.uploadedFile != null) {
+            String fileName = uploadedFile.getName();
+            String fileSize = Utils.getFileSize(uploadedFile);
+            String fileExt = Utils.getFileExtension(fileName);
 
+
+            this.MainPage_TextField_FileName.setText(fileName);
+            this.MainPage_TextField_FileSize.setText(fileSize);
+            this.MainPage_TextField_Ext.setText(fileExt);
+        }
+    }
     @FXML
     void MainPage_onAction_upload(ActionEvent event) {
+        this.MainPage_TextField_FileSize.clear();
+        this.MainPage_TextField_Ext.clear();
+        this.MainPage_TextField_FileName.clear();
+
         FileChooser fileChooser = new FileChooser();
         FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Media File (*.mp4)",
                                                                                                 "*.mp4");
         fileChooser.getExtensionFilters().add(extensionFilter);
         uploadedFile = fileChooser.showOpenDialog(currentStage);
 
-        if(uploadedFile != null){
-
+        if(this.uploadedFile != null) {
             String fileName = uploadedFile.getName();
             String fileSize = Utils.getFileSize(uploadedFile);
             String fileExt = Utils.getFileExtension(fileName);
+            Media media = new Media(uploadedFile.toURI().toString());
+
 
             this.MainPage_TextField_FileName.setText(fileName);
             this.MainPage_TextField_FileSize.setText(fileSize);
             this.MainPage_TextField_Ext.setText(fileExt);
 
-            MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
+
+            MediaProcessor.getInstance().setMedia(media);
             MediaProcessor.getInstance().setFilePath(uploadedFile.getPath());
             MediaProcessor.getInstance().setFileName(fileName);
-
-
-        }else{
-            System.out.println("There is no file");
         }
+
+
     }
     @FXML
     void MainPage_View(ActionEvent event) throws IOException {
