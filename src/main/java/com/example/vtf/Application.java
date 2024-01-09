@@ -9,7 +9,6 @@ import java.io.IOException;
 public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Engine backEnd = new Engine();
         stage.setScene(PageJump.getMainPage());
         stage.setTitle("Video to GIF");
         stage.show();

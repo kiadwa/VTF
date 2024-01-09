@@ -24,6 +24,7 @@ tasks.withType(JavaCompile) {
 application {
   mainModule = 'com.example.vtf'
   mainClass = 'com.example.vtf.Application'
+  mainClassName = 'com.example.vtf.Application'
 }
 
 javafx {
