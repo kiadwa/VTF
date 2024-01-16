@@ -95,9 +95,7 @@ public class GIFCutMediaController implements Initializable {
                 String ss = String.valueOf(start_second);
                 String du = String.valueOf(end_second - start_second);
                 //test print
-                System.out.println("start time: " + ss);
-                System.out.println("duration: " + du);
-                System.out.println("Media Path " + MediaProcessor.getInstance().getFilePath());
+
                 //cut file here
                 FFmpegWrapper.cutMedia(MediaProcessor.getInstance().getFilePath(),
                                         ss,
@@ -152,7 +150,6 @@ public class GIFCutMediaController implements Initializable {
             public void changed(ObservableValue<? extends Number> location, Number arg1, Number arg2){
                 endSliderVal = GIFCutMedia_slider_endSlider.getValue();
                 endDu = (int) (mediaProcessor.getMedia().getDuration().toSeconds() * endSliderVal * 0.01);
-                System.out.println(mediaProcessor.getMedia().getDuration().toSeconds());
             }
         });
         GIFCutMedia_slider_startSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -161,7 +158,6 @@ public class GIFCutMediaController implements Initializable {
             public void changed(ObservableValue<? extends Number> location, Number arg1, Number arg2){
                 startSliderVal = GIFCutMedia_slider_startSlider.getValue();
                 startDu = (int) (mediaProcessor.getMedia().getDuration().toSeconds() * startSliderVal * 0.01);
-                System.out.println(mediaProcessor.getMedia().getDuration().toSeconds());
             }
         });
     }
