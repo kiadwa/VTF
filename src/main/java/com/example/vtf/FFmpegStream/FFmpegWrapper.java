@@ -14,7 +14,7 @@ public class FFmpegWrapper {
 
         File ffmpegFile = new File(FFMPEG_PATH);
         if (!ffmpegFile.exists()) {
-            System.err.println("FFmpeg executable not found at: " + FFMPEG_PATH);
+            
             return false;
         }
         try {
@@ -41,7 +41,8 @@ public class FFmpegWrapper {
 
     public static boolean codecConvert(String inputPath, String outputPath) {
         String convertCommand =  "ffmpeg.exe -i " + inputPath + " -c:v libx264 -c:a aac " + outputPath;
-        return execute(convertCommand);
+        execute(convertCommand);
+        return true;
     }
     public static boolean cutMedia(String inputPath, String startTime, String duration, String outputPath){
         String cutCommand = "ffmpeg.exe -ss " + startTime + " -i " + inputPath + " -t " + duration + " -vf \"fps=30,scale=320:-1:flags=lanczos\" " + outputPath;
@@ -54,7 +55,7 @@ public class FFmpegWrapper {
 
     public static void main(String[] args) {
 
-
+        //testing
         // Create an instance of the FFmpegWrapper
         FFmpegWrapper ffmpeg = new FFmpegWrapper();
 
@@ -63,7 +64,7 @@ public class FFmpegWrapper {
         String outputVideo = "src/main/resources/output/output.mp4"; // Replace with your desired output file path
         String outputConverted = "src/main/resources/output/output1.mp4";
 
-        ffmpeg.cutMedia(inputVideo,"3", "3", outputVideo);
+        //ffmpeg.cutMedia(inputVideo,"3", "3", outputVideo);
         //ffmpeg.codecConvert(outputVideo,outputConverted);
 
 

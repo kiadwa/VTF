@@ -40,9 +40,7 @@ public class ViewController {
     public MediaView getView_MediaView_mediaoutput(){
         return this.View_MediaView_mediaoutput;
     }
-    public void playMedia(){
-
-    }
+   
 
     @FXML
     void View_Back(ActionEvent event) throws IOException {
@@ -50,7 +48,9 @@ public class ViewController {
     }
 
     @FXML
+    //**Plsy the media upon click view */
     void View_MediaView(ActionEvent event) {
+    
         ViewController.getInstance().getView_MediaView_mediaoutput().getMediaPlayer().play();
     }
 

@@ -1,7 +1,9 @@
 package com.example.vtf.Controller;
 
 import com.example.vtf.Engine.MediaProcessor;
+import com.example.vtf.Engine.Message;
 import com.example.vtf.Engine.PageJump;
+import com.example.vtf.Engine.Message.Status;
 import com.example.vtf.FFmpegStream.FFmpegWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,14 +17,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
-
+import org.controlsfx.control.Notifications;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.example.vtf.Ultilities.Utils.getMediaDuration;
 
-public class GIFCutMediaController implements Initializable {
+public class GIFCutMediaController implements Initializable, Notificator {
     //get the cut start range and end range from this UI
     // then using ffmpeg to cut, and export it into GIF file.
 
@@ -62,8 +63,8 @@ public class GIFCutMediaController implements Initializable {
             GIFCutMedia_mediaView_preview.setMediaPlayer(md);
         }
         if(startDu > endDu){
-            System.out.println("endDu can't be smaller than startDu");
-
+            showNotification(new Message("End time cannot be before start time", Status.FAIL));
+            return;
         }
         else if(GIFCutMedia_mediaView_preview.getMediaPlayer().getStatus() != MediaPlayer.Status.PLAYING) {
 
@@ -81,7 +82,7 @@ public class GIFCutMediaController implements Initializable {
     @FXML
     void GIFCutMedia_toGIF(ActionEvent event) {
         disableSlider();
-        if (mediaProcessor.getMedia() != null) {
+        if (mediaProcessor.getMedia() != null && endSliderVal > startSliderVal) {
             MediaPlayer mediaPlayer = mediaProcessor.getMediaPlayer();
             mediaPlayer.setOnReady(() -> {
                 // This block is executed when the media is ready
@@ -105,7 +106,7 @@ public class GIFCutMediaController implements Initializable {
         }
 
         if (endSliderVal < startSliderVal) {
-            System.out.println("OH, can't cut if end duration is smaller than start");
+            showNotification(new Message("End time cannot be before start time", Status.FAIL));
             enableSlider();
             return;
         }
@@ -161,5 +162,26 @@ public class GIFCutMediaController implements Initializable {
             }
         });
     }
+
+    @Override
+    public void showNotification(Message msg) {
+        
+            String notiMsg = "";
+            switch(msg.getStatus()){
+                case SUCCESS -> {
+                    notiMsg = "Success";
+                    Notifications.create().title(notiMsg).text(msg.getMessage()).showConfirm();
+                }
+                case FAIL -> {
+                    notiMsg = "Fail";
+                    Notifications.create().title(notiMsg).text(msg.getMessage()).showError();
+                }
+                case INFO -> {
+                    notiMsg = "Info";
+                    Notifications.create().title(notiMsg).text(msg.getMessage()).showInformation();
+                }
+            }
+    }
+
 }
 

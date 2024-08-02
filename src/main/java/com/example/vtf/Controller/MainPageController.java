@@ -1,7 +1,9 @@
 package com.example.vtf.Controller;
 
 import com.example.vtf.Engine.MediaProcessor;
+import com.example.vtf.Engine.Message;
 import com.example.vtf.Engine.PageJump;
+import com.example.vtf.Engine.Message.Status;
 import com.example.vtf.Ultilities.Utils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,13 +17,13 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+
+import org.controlsfx.control.Notifications;
 
 import static com.example.vtf.Ultilities.PAGE_INDEX.MEDIA_GIF_CUT;
 import static com.example.vtf.Ultilities.PAGE_INDEX.MEDIA_VIEW;
 
-public class MainPageController{
+public class MainPageController implements Notificator{
     @FXML
     private AnchorPane MainPage_AnchorPane_pane;
     @FXML
@@ -71,8 +73,7 @@ public class MainPageController{
         this.MainPage_TextField_FileName.clear();
 
         FileChooser fileChooser = new FileChooser();
-        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Media File (*.mp4)",
-                                                                                                "*.mp4");
+        FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("Media File (*.mp4)", "*.mp4");
         fileChooser.getExtensionFilters().add(extensionFilter);
         uploadedFile = fileChooser.showOpenDialog(currentStage);
 
@@ -92,13 +93,13 @@ public class MainPageController{
             MediaProcessor.getInstance().setFilePath(uploadedFile.getPath());
             MediaProcessor.getInstance().setFileName(fileName);
         }
-
+        showNotification(new Message("File uploaded successfully", Status.SUCCESS));
 
     }
     @FXML
     void MainPage_View(ActionEvent event) throws IOException {
         if(uploadedFile == null) {
-            System.out.println("You haven't uploaded any file");
+            showNotification(new Message("No file has been uploaded for formatting", Status.FAIL));
             return;
         }
         MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
@@ -109,19 +110,38 @@ public class MainPageController{
     @FXML
     void MainPage_toGIF(ActionEvent event) throws IOException {
         if(uploadedFile == null){
-            System.out.println("You haven't uploaded any file");
+            showNotification(new Message("Please upload a file to continue", Status.FAIL));
 
         }else if(uploadedFile.getName().equals(MainPage_TextField_OutputName.getText())){
-            System.out.println("Name cannot be duplicated");
+            showNotification(new Message("Name must be unique", Status.FAIL));
 
         }else if(MainPage_TextField_OutputName.getText().isBlank() || MainPage_TextField_OutputName.getText().isEmpty()){
-            System.out.println("Name cannot be blank or empty");
+            showNotification(new Message("Must provide a name for the output GIF", Status.FAIL));
 
         }else{
             MediaProcessor.getInstance().setOutputPath("src/main/resources/output/" + Utils.swapExtensionIntoGIF(MainPage_TextField_OutputName.getText()));
             MediaProcessor.getInstance().setMedia(new Media(uploadedFile.toURI().toString()));
             PageJump.switchPage(event, MEDIA_GIF_CUT);
         }
+    }
+
+    @Override
+    public void showNotification(Message msg) {
+        String notiMsg = "";
+            switch(msg.getStatus()){
+                case SUCCESS -> {
+                    notiMsg = "Success";
+                    Notifications.create().title(notiMsg).text(msg.getMessage()).showConfirm();
+                }
+                case FAIL -> {
+                    notiMsg = "Fail";
+                    Notifications.create().title(notiMsg).text(msg.getMessage()).showError();
+                }
+                case INFO -> {
+                    notiMsg = "Info";
+                    Notifications.create().title(notiMsg).text(msg.getMessage()).showInformation();
+                }
+            }
     }
 }
 

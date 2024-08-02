@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import org.bytedeco.ffmpeg.global.avutil;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
 
 public class Utils {
@@ -34,11 +33,6 @@ public class Utils {
         }else{
             return fileName + "." + gif;
         }
-    }
-
-    /**Use to get media file duration into String*/
-    public static String getMediaFileDuration(File file){
-        return null;
     }
     /**Use to get File size*/
     public static String getFileSize(File file){

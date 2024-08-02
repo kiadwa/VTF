@@ -18,6 +18,7 @@ public class PageJump {
 
     private static final int USER_HOME_WINDOW_WIDTH = 850;
     private static final int USER_HOME_WINDOW_HEIGHT = 650;
+    
     private static Scene getScene(String destPageName) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader();
         switch(destPageName){

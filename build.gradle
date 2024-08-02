@@ -41,7 +41,7 @@ dependencies {
   implementation 'org.kordamp.ikonli:ikonli-javafx:12.3.1'
 
   // https://mvnrepository.com/artifact/org.kordamp.ikonli/ikonli-materialdesign-pack
-  implementation 'org.kordamp.ikonli:ikonli-materialdesign-pack:12.3.1'
+  //implementation 'org.kordamp.ikonli:ikonli-materialdesign-pack:12.3.1'
 
   implementation 'org.kordamp.ikonli:ikonli-antdesignicons-pack:12.3.1'
   // https://mvnrepository.com/artifact/org.testfx/testfx-junit5
@@ -54,6 +54,10 @@ dependencies {
   implementation group: 'org.bytedeco', name: 'ffmpeg', version: '6.0-1.5.9'
   // https://mvnrepository.com/artifact/org.bytedeco/javacv
   implementation group: 'org.bytedeco', name: 'javacv', version: '1.5.7'
+
+
+  // https://mvnrepository.com/artifact/org.controlsfx/controlsfx
+  implementation group: 'org.controlsfx', name: 'controlsfx', version: '11.1.0'
 
 
 }

@@ -4,6 +4,7 @@ module com.example.vtf {
     requires javafx.media;
     requires org.bytedeco.ffmpeg;
     requires org.bytedeco.javacv;
+    requires org.controlsfx.controls;
 
 
     opens com.example.vtf to javafx.fxml;
